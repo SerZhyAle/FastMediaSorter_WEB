@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
 
-  "$comment": "New repo adopted 2026-10-16 (FastMediaSorter Android ticket S4246 created it on 2026-10-15). Nothing builds or ships yet: no code, no tags (tagRegex null), no channel with a committed manifest, no site (handoff decision 4 open), no release changelog; the ledger is shape 2 since 2026-11-12 (S0039), the harness dev-log dev/CHANGELOG.md written by tools/post-change.ps1 through devlog/add_to_dev_log.ps1 (dev/ stays developer-local and ignored). Overlay E - a browser application served as static files - was drafted from this repo on 2026-10-16 and adopted by the canon in 2026.10.16.1 (PLATFORM_OVERLAYS \"Overlay E\"); its frozen anchors (the origin and the manifest id) are not reserved yet, because no public address exists. The owner named the public name \"FastMediaSorter for Web\" and the remote SerZhyAle/FastMediaSorter_WEB (public, MIT) on 2026-11-10 (S0021); the remote is created and pushed only when the owner asks, so the origin is still not reserved. editions stays empty on purpose: FMS_Web has the shape of a cross-repo edition (independent code, behaviour held in step through catalog contracts), but the field lists the editions a repository ships itself (FMS_Win declares [\"server\"], FMS_A []), neither sibling names FMS_Web, and FMS_Web is a subset of two products - the reading is in the contrib record. The stack is decided (static files, no build step); the serving shape and therefore the version shape and channels are open owner decisions, each a ticket in PLAN/. privacy.sensitiveAccess stays false while no channel is declared; the page handles a password, a token and a device private key, so the serving ticket revisits it together with a privacy page.",
+  "$comment": "New repo adopted 2026-10-16 (FastMediaSorter Android ticket S4246 created it on 2026-10-15). Nothing ships yet: no tags (tagRegex null), no channel with a committed manifest, no release changelog; the site exists since 2026-11-17 - GitHub Pages serves the product page from main /docs (S0044); the ledger is shape 2 since 2026-11-12 (S0039), the harness dev-log dev/CHANGELOG.md written by tools/post-change.ps1 through devlog/add_to_dev_log.ps1 (dev/ stays developer-local and ignored). Overlay E - a browser application served as static files - was drafted from this repo on 2026-10-16 and adopted by the canon in 2026.10.16.1 (PLATFORM_OVERLAYS \"Overlay E\"); its frozen anchors: the origin was reserved on 2026-11-17 (S0044) - the site block below carries the repository slug, the Pages origin and the path; the web app manifest id and start_url path follow the serving decision S0020 owes (whether Pages also serves a runnable copy of the client). The owner named the public name \"FastMediaSorter for Web\" and the remote SerZhyAle/FastMediaSorter_WEB (public, MIT) on 2026-11-10 (S0021); the remote was created and the first commit 9543e6a pushed on the owner's ask on 2026-11-17 (S0044 Publication record). editions stays empty on purpose: FMS_Web has the shape of a cross-repo edition (independent code, behaviour held in step through catalog contracts), but the field lists the editions a repository ships itself (FMS_Win declares [\"server\"], FMS_A []), neither sibling names FMS_Web, and FMS_Web is a subset of two products - the reading is in the contrib record. The stack is decided (static files, no build step); the serving shape and therefore the version shape and channels are open owner decisions, each a ticket in PLAN/. privacy.sensitiveAccess stays false while no channel is declared; the page handles a password, a token and a device private key, so the serving ticket revisits it together with a privacy page.",
 
   "canon": {
     "version": "2026.11.12.9",
@@ -32,8 +32,14 @@
   "channels": [],
 
   "site": {
+    "$comment": "S0044 criterion 6 - frozen anchors reserved before the first public release (publication record 2026-11-17): the repository slug and the Pages origin and path below. The web app manifest id and start_url path join when S0020 settles whether Pages also serves a runnable copy of the client; a channel value for a static host or a bundle release waits on the catalog (reported to the canon session, contrib record channels row) - never patched here.",
     "kind": "static",
     "root": "docs",
+    "frozenAnchors": {
+      "repo": "SerZhyAle/FastMediaSorter_WEB",
+      "origin": "https://serzhyale.github.io",
+      "path": "/FastMediaSorter_WEB/"
+    },
     "pages": [
       "index.html",
       "ru/index.html",
