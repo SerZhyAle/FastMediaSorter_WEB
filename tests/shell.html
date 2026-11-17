@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FMS_Web shell test (S0028)</title>
+  <link rel="stylesheet" href="../web/styles/palette.css">
+  <link rel="stylesheet" href="../web/styles/shell.css">
+  <style>
+    #page { inline-size: 1024px; block-size: 640px; border: 1px solid; }
+    #results { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>FMS_Web shell test</h1>
+  <p>
+    Checks the page shell: every string in EN, RU and UK, preference fallbacks, the shared controls
+    (command, boolean option, topic group, unavailable function) and the page itself in a frame -
+    start screen, settings route, live language and theme, Escape. The verdict is the last line.
+  </p>
+  <div id="components"></div>
+  <iframe id="page" title="Page under test"></iframe>
+  <pre id="results" aria-live="polite">running...</pre>
+  <script type="module" src="./shell.js"></script>
+</body>
+</html>

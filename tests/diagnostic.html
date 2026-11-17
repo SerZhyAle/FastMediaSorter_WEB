@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FMS_Web diagnostic report test (S0048)</title>
+  <style>
+    #page { inline-size: 1024px; block-size: 640px; border: 1px solid; }
+    #results { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>FMS_Web diagnostic report test</h1>
+  <p>
+    Checks the About diagnostic report: the redaction vectors of DIAGNOSTIC-REPORT, the session-log ring,
+    the allowlisted summary, the ZIP bytes (every entry's CRC read back), the absence of any network call
+    in the export modules, and the real page in a frame - the block on About in three languages, the save
+    command, the file it hands to the browser and the status line. The verdict is the last line.
+  </p>
+  <iframe id="page" title="Page under test"></iframe>
+  <pre id="results" aria-live="polite">running...</pre>
+  <script type="module" src="./diagnostic.js"></script>
+</body>
+</html>

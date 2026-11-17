@@ -1,0 +1,47 @@
+# Build and dependency output (whichever stack is chosen)
+dist/
+build/
+out/
+node_modules/
+*.wasm.map
+coverage/
+
+# IDE
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+
+# Secrets, keys and certificates - never in the repository
+.secrets/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.snk
+*.jks
+*.keystore
+*token*
+*secret*
+.env
+.env.*
+
+# Developer-local roles of the canon role map
+dev/
+logs/
+DOWNLOADS/
+test_media/
+
+# Scratch and agent working files
+temp/
+tmp/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local specification workspace and archive.
+/PLAN/
+/PLAN/archive/

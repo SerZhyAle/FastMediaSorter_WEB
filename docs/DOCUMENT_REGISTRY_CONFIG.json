@@ -1,0 +1,37 @@
+{
+  "directories": [
+    "docs",
+    ".claude/rules",
+    ".claude/skills"
+  ],
+  "extensions": [
+    ".md",
+    ".json",
+    ".jsonl"
+  ],
+  "rootDocuments": [
+    "README.md",
+    "CLAUDE.md",
+    "AGENTS.md"
+  ],
+  "ignores": [
+    {
+      "pattern": "docs/origin/*",
+      "reason": "Immutable verbatim origin records; not maintained product documentation."
+    },
+    {
+      "pattern": "docs/BOOTSTRAP_HANDOFF.md",
+      "reason": "Immutable upstream handoff, read-only under CLAUDE.md section 1."
+    }
+  ],
+  "otherCorpora": [
+    {
+      "root": "PLAN",
+      "owner": "Adopted ticket harness; validate separately through tools/harness.ps1 spec_catalog/validate."
+    },
+    {
+      "root": "temp",
+      "owner": "Disposable local evidence and research instruments, not published documentation."
+    }
+  ]
+}

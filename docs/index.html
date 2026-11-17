@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>FastMediaSorter for Web - Browse, sort and exchange media in your browser</title>
+<meta name="description" content="FastMediaSorter for Web brings browsing, playback, quick folder sorting and Media Exchange Server access to your browser on systems where the native programs do not run.">
+<link rel="canonical" href="https://serzhyale.github.io/FastMediaSorter_WEB/">
+<link rel="alternate" hreflang="en" href="https://serzhyale.github.io/FastMediaSorter_WEB/">
+<link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/FastMediaSorter_WEB/ru/">
+<link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/FastMediaSorter_WEB/uk/">
+<link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/FastMediaSorter_WEB/">
+<meta property="og:title" content="FastMediaSorter for Web - Browse, sort and exchange media in your browser">
+<meta property="og:description" content="FastMediaSorter for Web brings browsing, playback, quick folder sorting and Media Exchange Server access to your browser on systems where the native programs do not run.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://serzhyale.github.io/FastMediaSorter_WEB/">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<script>
+(function(){
+  var q=new URLSearchParams(location.search),h=document.documentElement;
+  var ql=q.get('lang')||q.get('l');var st=null;try{st=localStorage.getItem('sza-lang')}catch(e){}var ch=ql||st;if(ch){ch=ch.toLowerCase();if(ch==='ua')ch='uk';if(ch==='ru'||ch==='uk'){location.replace(ch+'/'+location.hash);return;}}
+  var th=q.get('theme');if(th!=='light'&&th!=='dark'){try{th=localStorage.getItem('sza-theme')}catch(e){}}if(th!=='light'&&th!=='dark')th=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  h.setAttribute('data-theme',th);
+  var pr=q.get('profile');if(pr!=='pointer'&&pr!=='touch')pr=matchMedia('(pointer: coarse)').matches?'touch':'pointer';
+  h.setAttribute('data-ui-profile',pr);
+})();
+</script>
+<link rel="stylesheet" href="styles/sza-kit.css">
+<style>
+  body{padding-bottom:4rem}
+  .wrap{padding:0 var(--gutter);position:relative;z-index:1}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr));gap:1rem;margin:1rem 0 1.5rem}
+  .card{border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;background:var(--card)}
+  .card h2,.card h3{margin-top:0;font-size:1.05rem}
+  .card p:last-child{margin-bottom:0}
+  .caveat{color:var(--muted);font-size:.9rem;margin-top:.5rem}
+  .table-wrap{overflow-x:auto;margin:1rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--text-2);font-family:var(--font-heading)}
+  .inline-mark{width:20px;height:20px;vertical-align:text-bottom;margin-inline-end:.35rem}
+  .footer-meta{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;color:var(--muted);font-size:.9rem}
+  .footer-meta a{color:inherit}
+</style>
+</head>
+<body>
+<div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<header class="site-header">
+  <a class="brand" href="./">FastMediaSorter for Web</a>
+  <a class="btn btn-ghost" href="guide.html">Guide</a>
+  <div class="seg" role="group" aria-label="Language">
+    <a href="ru/" data-set-lang="ru" aria-pressed="false">RU</a><a href="./" data-set-lang="en" aria-pressed="true">EN</a><a href="uk/" data-set-lang="ua" aria-pressed="false">UA</a>
+  </div>
+  <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch theme"><span class="gi gi-theme" aria-hidden="true"></span><span>Theme</span></button>
+  <a class="btn btn-primary" href="#get">Get started</a>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="identity">
+      <img class="product-icon" src="assets/icon.svg" width="104" height="104" alt="">
+      <div>
+        <p class="product-name">FastMediaSorter for Web</p>
+        <p class="kicker">Browser media sorter</p>
+      </div>
+    </div>
+    <h1>Browse, sort and exchange media in your browser.</h1>
+    <p class="lead">FastMediaSorter for Web brings browsing, playback, quick folder sorting and Media Exchange Server access to your browser on systems where the native programs do not run.</p>
+    <p class="caveat">Built for macOS, Linux, ChromeOS, iOS, iPadOS and anyone who cannot install a native program.</p>
+  </section>
+
+  <section class="cards" aria-label="Scenarios">
+    <article class="card"><h2>Browse and play local media</h2><p>Open a local folder in your browser to view photos and animated images, play video and audio, and run a slideshow with Screen Wake Lock.</p></article>
+    <article class="card"><h2>Sort into destination folders</h2><p>Assign up to ten destination folders and press 1 to 9 or 0 to move the open file and advance to the next one. Same-name files are never overwritten.</p><p class="caveat">Moving files to destination folders works in Chrome and Edge on desktop; in other browsers the control stays visible and disabled with the reason beside it.</p></article>
+    <article class="card"><h2>Exchange account and clipboard</h2><p>Join your account as one more device on a Media Exchange Server: register from an invitation link, view devices and folders, receive broadcasts and share the clipboard.</p></article>
+    <article class="card"><h2>Server administration and diagnostics</h2><p>Run Media Exchange Server administration from the browser and export a local diagnostic ZIP report on request with no file names, passwords or keys.</p></article>
+  </section>
+
+  <section id="get">
+    <h2>Get started</h2>
+    <ol>
+      <li>Open the latest release bundle from GitHub Releases or serve the static <code>web/</code> folder from your Media Exchange Server (<code>webDir</code>) or any HTTPS static host.</li>
+      <li>Open the app in Chrome, Edge, Firefox, Safari or Samsung Internet.</li>
+      <li>Choose a local folder to browse and sort, or paste an invitation link to connect to your exchange account.</li>
+    </ol>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/SerZhyAle/FastMediaSorter_WEB/releases/latest" target="_blank" rel="noopener noreferrer"><span>GitHub Releases</span><span class="gi gi-external gi-mirror" aria-hidden="true"></span><span class="sr">, Open in new window</span></a>
+      <a class="btn" href="https://github.com/SerZhyAle/FastMediaSorter_WEB" target="_blank" rel="noopener noreferrer"><span>Source on GitHub</span><span class="gi gi-external gi-mirror" aria-hidden="true"></span><span class="sr">, Open in new window</span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Features and compatibility</h2>
+    <details class="sec" open><summary><span class="secnum">01</span><span>Local media, sorting and slideshow</span></summary>
+      <p>Open any folder of images, animated images, video or audio directly in the browser. Run a timed slideshow while keeping the screen awake where Wake Lock is supported.</p><p>In Chrome and Edge on desktop, select up to ten destination folders and sort files with keys <code>1</code> to <code>9</code> and <code>0</code>.</p>
+    </details>
+    <details class="sec" open><summary><span class="secnum">02</span><span>Exchange account and Media Exchange Server</span></summary>
+      <p>The browser speaks the shared <code>DEVICE-EXCHANGE</code> protocol. Your device private key never leaves the browser, and sealed content cannot be read by the server. Connecting an exchange account is distinct from installing the Windows program's local SFTP folder sharing: the account lives on a Media Exchange Server that its owner runs, the browser has no SFTP of its own, and no Windows installation is required to use this web app.</p><p>Read more on the shared <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/docs/media-exchange-portal/">Media exchange between your devices</a> portal and the <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/docs/media-exchange-portal/exchange-server.html"><img class="inline-mark" src="assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a> page.</p>
+    </details>
+    <details class="sec"><summary><span class="secnum">03</span><span>Browser support floor</span></summary>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Engine / Browser</th><th>Browse &amp; view</th><th>Play audio &amp; video</th><th>Sort to folders (1-9, 0)</th><th>Exchange &amp; admin</th></tr></thead>
+          <tbody>
+          <tr><td>Chrome / Edge (desktop)</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Supported</td></tr>
+          <tr><td>Chrome / Samsung Internet (Android)</td><td>Supported</td><td>Supported</td><td>Visible, disabled (no directory write access)</td><td>Supported</td></tr>
+          <tr><td>Firefox (desktop, ESR, Android)</td><td>Supported</td><td>Supported</td><td>Visible, disabled (no directory write access)</td><td>Supported</td></tr>
+          <tr><td>Safari (macOS, iOS, iPadOS)</td><td>Supported</td><td>Supported</td><td>Visible, disabled (no directory write access)</td><td>Supported</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="sec"><summary><span class="secnum">04</span><span>Native family programs</span></summary>
+      <p>Functions that require the operating system itself - listening on a port, running after the tab closes, raw sockets or watch pairing - stay with the native programs: <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/">Fast Media Sorter &amp; Organizer</a> (Android) and <a href="https://serzhyale.github.io/FastMediaSorter_Lite/">Fast Media Sorter &amp; Sharing for Windows</a> (Windows) - Media and file manager for Windows: sort photos and videos with one key. It installs as four optional parts - a media and file manager, local SFTP folder sharing, scheduled file operations and a Media Exchange Server you run yourself - starting with the manager or with the folder-sharing server, neither needing the other; the exchange server is not in any published package, and no Windows installation is required to use this web app. The Windows program's own page names its install choices.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Documentation and support</h2>
+    <div class="btn-row">
+      <a class="btn" href="guide.html">Quick-start guide</a>
+      <a class="btn" href="privacy.html">Privacy &amp; permissions</a>
+      <a class="btn" href="support.html">Support &amp; compatibility</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer wrap">
+  <section aria-label="More tools by SZA">
+    <h2>More tools by SZA</h2>
+    <div class="tools-grid">
+      <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/"><b>Fast Media Sorter &amp; Organizer</b><span>Android media sorter</span></a>
+      <a href="https://serzhyale.github.io/FastMediaSorter_Lite/"><b>Fast Media Sorter &amp; Sharing for Windows</b><span>Media and file manager for Windows: sort photos and videos with one key</span></a>
+      <a href="https://serzhyale.github.io/CyrFlip/"><b>CyrFlip</b><span>Windows layout fixer</span></a>
+      <a href="https://serzhyale.github.io/doc-html-translate/"><b>doc-html-translate</b><span>Windows ebook converter</span></a>
+      <a href="https://serzhyale.github.io/FileDO/"><b>FileDO</b><span>Windows storage CLI</span></a>
+      <a href="https://serzhyale.github.io/StreamsPlayer/"><b>STREAMS Player</b><span>Windows stream player</span></a>
+      <a href="https://serzhyale.github.io/OneClickRunner/"><b>OneClickRunner</b><span>Windows tray launcher</span></a>
+      <a href="https://serzhyale.github.io/universal-agent-kit/"><b>Universal Agent Kit</b><span>AI-dev methodology</span></a>
+      <a href="https://sza.od.ua"><b>SZA (hub)</b><span>Portfolio</span></a>
+    </div>
+  </section>
+  <div class="footer-meta">
+    <span>Author: <a href="https://sza.od.ua">SZA</a></span>
+    <a href="https://github.com/SerZhyAle">GitHub: SerZhyAle</a>
+    <span>Contact: <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
+    <a href="privacy.html">Privacy</a>
+    <a href="guide.html">Guide</a>
+    <a href="support.html">Support</a>
+    <a href="https://github.com/SerZhyAle/FastMediaSorter_WEB/blob/main/LICENSE">MIT License</a>
+  </div>
+</footer>
+<button type="button" class="to-top show" id="toTop" aria-label="Scroll to top" title="Scroll to top"><span class="gi gi-top" aria-hidden="true"></span></button>
+<script>
+(function(){
+  var h=document.documentElement;
+  document.querySelectorAll('[data-set-lang]').forEach(function(a){
+    a.addEventListener('click',function(){try{localStorage.setItem('sza-lang',a.getAttribute('data-set-lang'))}catch(e){}});
+  });
+  var tb=document.getElementById('themeBtn');
+  if(tb)tb.addEventListener('click',function(){
+    var n=h.getAttribute('data-theme')==='light'?'dark':'light';
+    h.setAttribute('data-theme',n);
+    try{localStorage.setItem('sza-theme',n)}catch(e){}
+  });
+  var tt=document.getElementById('toTop');
+  if(tt)tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# Enforce LF line endings for source and text files
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.ts text eol=lf
+*.go text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.svg text eol=lf
+*.sh text eol=lf
+
+# Keep CRLF for Windows-specific scripts
+*.bat text eol=crlf
+*.PS1 text eol=crlf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files - no line ending conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.wasm binary
+*.zip binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+
+# EXCHANGE-MARK rule 6: the vendored artwork is compared by hash, so no line-ending conversion
+web/vendor/exchange-mark/** -text

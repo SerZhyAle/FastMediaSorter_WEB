@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>FastMediaSorter for Web - просмотр, сортировка и обмен медиа в браузере</title>
+<meta name="description" content="FastMediaSorter for Web приносит просмотр, воспроизведение, быструю сортировку по папкам и доступ к Media Exchange Server в браузер для систем, где не работают нативные программы.">
+<link rel="canonical" href="https://serzhyale.github.io/FastMediaSorter_WEB/ru/">
+<link rel="alternate" hreflang="en" href="https://serzhyale.github.io/FastMediaSorter_WEB/">
+<link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/FastMediaSorter_WEB/ru/">
+<link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/FastMediaSorter_WEB/uk/">
+<link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/FastMediaSorter_WEB/">
+<meta property="og:title" content="FastMediaSorter for Web - просмотр, сортировка и обмен медиа в браузере">
+<meta property="og:description" content="FastMediaSorter for Web приносит просмотр, воспроизведение, быструю сортировку по папкам и доступ к Media Exchange Server в браузер для систем, где не работают нативные программы.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://serzhyale.github.io/FastMediaSorter_WEB/ru/">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<script>
+(function(){
+  var q=new URLSearchParams(location.search),h=document.documentElement;
+  
+  var th=q.get('theme');if(th!=='light'&&th!=='dark'){try{th=localStorage.getItem('sza-theme')}catch(e){}}if(th!=='light'&&th!=='dark')th=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  h.setAttribute('data-theme',th);
+  var pr=q.get('profile');if(pr!=='pointer'&&pr!=='touch')pr=matchMedia('(pointer: coarse)').matches?'touch':'pointer';
+  h.setAttribute('data-ui-profile',pr);
+})();
+</script>
+<link rel="stylesheet" href="../styles/sza-kit.css">
+<style>
+  body{padding-bottom:4rem}
+  .wrap{padding:0 var(--gutter);position:relative;z-index:1}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr));gap:1rem;margin:1rem 0 1.5rem}
+  .card{border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;background:var(--card)}
+  .card h2,.card h3{margin-top:0;font-size:1.05rem}
+  .card p:last-child{margin-bottom:0}
+  .caveat{color:var(--muted);font-size:.9rem;margin-top:.5rem}
+  .table-wrap{overflow-x:auto;margin:1rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--text-2);font-family:var(--font-heading)}
+  .inline-mark{width:20px;height:20px;vertical-align:text-bottom;margin-inline-end:.35rem}
+  .footer-meta{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;color:var(--muted);font-size:.9rem}
+  .footer-meta a{color:inherit}
+</style>
+</head>
+<body>
+<div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<header class="site-header">
+  <a class="brand" href="../ru/">FastMediaSorter for Web</a>
+  <a class="btn btn-ghost" href="guide.html">Руководство</a>
+  <div class="seg" role="group" aria-label="Язык">
+    <a href="../ru/" data-set-lang="ru" aria-pressed="true">RU</a><a href="../" data-set-lang="en" aria-pressed="false">EN</a><a href="../uk/" data-set-lang="ua" aria-pressed="false">UA</a>
+  </div>
+  <button type="button" class="theme-btn" id="themeBtn" aria-label="Переключить тему"><span class="gi gi-theme" aria-hidden="true"></span><span>Тема</span></button>
+  <a class="btn btn-primary" href="#get">Начать</a>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="identity">
+      <img class="product-icon" src="../assets/icon.svg" width="104" height="104" alt="">
+      <div>
+        <p class="product-name">FastMediaSorter for Web</p>
+        <p class="kicker">Сортировщик медиа в браузере</p>
+      </div>
+    </div>
+    <h1>Просматривайте, сортируйте и обменивайтесь медиа в браузере.</h1>
+    <p class="lead">FastMediaSorter for Web приносит просмотр, воспроизведение, быструю сортировку по папкам и доступ к Media Exchange Server в браузер для систем, где не работают нативные программы.</p>
+    <p class="caveat">Для macOS, Linux, ChromeOS, iOS, iPadOS и всех, кто не может установить нативную программу.</p>
+  </section>
+
+  <section class="cards" aria-label="Scenarios">
+    <article class="card"><h2>Просмотр и воспроизведение локальных медиа</h2><p>Откройте локальную папку в браузере, чтобы смотреть фото и анимацию, воспроизводить видео и аудио и запускать слайд-шоу с удержанием экрана.</p></article>
+    <article class="card"><h2>Сортировка по папкам назначения</h2><p>Выберите до десяти папок назначения и нажимайте 1-9 или 0, чтобы переместить открытый файл и перейти к следующему. Файлы с тем же именем не перезаписываются.</p><p class="caveat">Перемещение файлов в папки назначения работает в Chrome и Edge на компьютере; в остальных браузерах элемент остаётся видимым и отключённым с указанием причины.</p></article>
+    <article class="card"><h2>Учётная запись обмена и буфер</h2><p>Подключите браузер как ещё одно устройство к Media Exchange Server: регистрируйтесь по приглашению, смотрите устройства и папки, принимайте трансляции и используйте общий буфер.</p></article>
+    <article class="card"><h2>Администрирование сервера и диагностика</h2><p>Управляйте сервером Media Exchange Server из браузера и сохраняйте локальный ZIP-отчёт диагностики без имён файлов, паролей и ключей.</p></article>
+  </section>
+
+  <section id="get">
+    <h2>Начало работы</h2>
+    <ol>
+      <li>Скачайте последний релизный архив в GitHub Releases или раздавайте статическую папку <code>web/</code> с вашего Media Exchange Server (<code>webDir</code>) либо любого статического HTTPS-хостинга.</li>
+      <li>Откройте приложение в Chrome, Edge, Firefox, Safari или Samsung Internet.</li>
+      <li>Выберите локальную папку для просмотра и сортировки или откройте ссылку-приглашение для входа в учётную запись обмена.</li>
+    </ol>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/SerZhyAle/FastMediaSorter_WEB/releases/latest" target="_blank" rel="noopener noreferrer"><span>GitHub Releases</span><span class="gi gi-external gi-mirror" aria-hidden="true"></span><span class="sr">, откроется в новом окне</span></a>
+      <a class="btn" href="https://github.com/SerZhyAle/FastMediaSorter_WEB" target="_blank" rel="noopener noreferrer"><span>Исходный код на GitHub</span><span class="gi gi-external gi-mirror" aria-hidden="true"></span><span class="sr">, откроется в новом окне</span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Возможности и совместимость</h2>
+    <details class="sec" open><summary><span class="secnum">01</span><span>Локальные медиа, сортировка и слайд-шоу</span></summary>
+      <p>Открывайте папки с изображениями, анимацией, видео и аудио прямо в браузере. Запускайте слайд-шоу с удержанием экрана там, где поддерживается Wake Lock.</p><p>В Chrome и Edge на компьютере выберите до десяти папок назначения и сортируйте файлы клавишами <code>1</code>-<code>9</code> и <code>0</code>.</p>
+    </details>
+    <details class="sec" open><summary><span class="secnum">02</span><span>Учётная запись обмена и Media Exchange Server</span></summary>
+      <p>Браузер работает по общему протоколу <code>DEVICE-EXCHANGE</code>. Закрытый ключ устройства никогда не покидает браузер, а сервер не может прочитать зашифрованное содержимое. Подключение учётной записи обмена - не то же самое, что локальная раздача папок по SFTP в программе для Windows: учётная запись живет на Media Exchange Server, который держит его владелец, у браузера нет своего SFTP, и для работы этого веб-приложения не нужна никакая установка на Windows.</p><p>Подробнее на общем портале <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/docs/media-exchange-portal/">Обмен медиа между устройствами</a> и странице <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/docs/media-exchange-portal/exchange-server.html"><img class="inline-mark" src="../assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a>.</p>
+    </details>
+    <details class="sec"><summary><span class="secnum">03</span><span>Поддерживаемые браузеры</span></summary>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Движок / Браузер</th><th>Просмотр</th><th>Аудио и видео</th><th>Сортировка в папки (1-9, 0)</th><th>Обмен и админ</th></tr></thead>
+          <tbody>
+          <tr><td>Chrome / Edge (компьютер)</td><td>Поддерживается</td><td>Поддерживается</td><td>Поддерживается</td><td>Поддерживается</td></tr>
+          <tr><td>Chrome / Samsung Internet (Android)</td><td>Поддерживается</td><td>Поддерживается</td><td>Видимо, отключено (нет записи в папку)</td><td>Поддерживается</td></tr>
+          <tr><td>Firefox (компьютер, ESR, Android)</td><td>Поддерживается</td><td>Поддерживается</td><td>Видимо, отключено (нет записи в папку)</td><td>Поддерживается</td></tr>
+          <tr><td>Safari (macOS, iOS, iPadOS)</td><td>Поддерживается</td><td>Поддерживается</td><td>Видимо, отключено (нет записи в папку)</td><td>Поддерживается</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <details class="sec"><summary><span class="secnum">04</span><span>Нативные программы семейства</span></summary>
+      <p>Функции, требующие самой операционной системы - прослушивание порта, работа после закрытия вкладки, прямые сокеты или связь с часами - остаются в нативных программах: <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/">Fast Media Sorter &amp; Organizer</a> (Android) и <a href="https://serzhyale.github.io/FastMediaSorter_Lite/">Fast Media Sorter &amp; Sharing for Windows</a> (Windows) - Медиа- и файловый менеджер для Windows: сортировка фото и видео одной клавишей. Она ставится как четыре необязательные части - медиа- и файловый менеджер, локальная раздача папок по SFTP, операции с файлами по расписанию и Media Exchange Server, который вы держите сами - начиная с менеджера или с сервера раздачи папок, и ни одной из них не нужна другая; сервер обмена не входит ни в один опубликованный пакет, и для работы этого веб-приложения не нужна никакая установка на Windows. Свою страницу с вариантами установки называет сама программа для Windows.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Документация и поддержка</h2>
+    <div class="btn-row">
+      <a class="btn" href="guide.html">Руководство</a>
+      <a class="btn" href="privacy.html">Приватность и разрешения</a>
+      <a class="btn" href="support.html">Поддержка и совместимость</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer wrap">
+  <section aria-label="Другие программы SZA">
+    <h2>Другие программы SZA</h2>
+    <div class="tools-grid">
+      <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/"><b>Fast Media Sorter &amp; Organizer</b><span>Сортировщик медиа для Android</span></a>
+      <a href="https://serzhyale.github.io/FastMediaSorter_Lite/"><b>Fast Media Sorter &amp; Sharing for Windows</b><span>Медиа- и файловый менеджер для Windows: сортировка фото и видео одной клавишей</span></a>
+      <a href="https://serzhyale.github.io/CyrFlip/"><b>CyrFlip</b><span>Исправление раскладки Windows</span></a>
+      <a href="https://serzhyale.github.io/doc-html-translate/"><b>doc-html-translate</b><span>Конвертер электронных книг для Windows</span></a>
+      <a href="https://serzhyale.github.io/FileDO/"><b>FileDO</b><span>Консольная утилита для дисков Windows</span></a>
+      <a href="https://serzhyale.github.io/StreamsPlayer/"><b>STREAMS Player</b><span>Плеер потоков для Windows</span></a>
+      <a href="https://serzhyale.github.io/OneClickRunner/"><b>OneClickRunner</b><span>Лаунчер в трее Windows</span></a>
+      <a href="https://serzhyale.github.io/universal-agent-kit/"><b>Universal Agent Kit</b><span>Методология разработки с ИИ</span></a>
+      <a href="https://sza.od.ua"><b>SZA (hub)</b><span>Портфолио</span></a>
+    </div>
+  </section>
+  <div class="footer-meta">
+    <span>Автор: <a href="https://sza.od.ua">SZA</a></span>
+    <a href="https://github.com/SerZhyAle">GitHub: SerZhyAle</a>
+    <span>Контакт: <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
+    <a href="privacy.html">Приватность</a>
+    <a href="guide.html">Руководство</a>
+    <a href="support.html">Поддержка</a>
+    <a href="https://github.com/SerZhyAle/FastMediaSorter_WEB/blob/main/LICENSE">Лицензия MIT</a>
+  </div>
+</footer>
+<button type="button" class="to-top show" id="toTop" aria-label="Наверх" title="Наверх"><span class="gi gi-top" aria-hidden="true"></span></button>
+<script>
+(function(){
+  var h=document.documentElement;
+  document.querySelectorAll('[data-set-lang]').forEach(function(a){
+    a.addEventListener('click',function(){try{localStorage.setItem('sza-lang',a.getAttribute('data-set-lang'))}catch(e){}});
+  });
+  var tb=document.getElementById('themeBtn');
+  if(tb)tb.addEventListener('click',function(){
+    var n=h.getAttribute('data-theme')==='light'?'dark':'light';
+    h.setAttribute('data-theme',n);
+    try{localStorage.setItem('sza-theme',n)}catch(e){}
+  });
+  var tt=document.getElementById('toTop');
+  if(tt)tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+</script>
+</body>
+</html>

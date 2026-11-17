@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "product": "FastMediaSorter for Web",
+  "helpRoot": "web/help",
+  "surfaces": [
+    { "id": "start",            "name": "Choose where to start", "form": "layer", "help": "start" },
+    { "id": "local",            "name": "Files on this device",  "form": "layer", "help": "local-files" },
+    { "id": "exchange",         "name": "Exchange account",      "form": "layer", "help": "exchange-account" },
+    { "id": "admin",            "name": "Manage server",         "form": "layer", "help": "server-administration" },
+    { "id": "settings.general", "name": "General",               "form": "layer", "help": "settings-general" },
+    { "id": "settings.about",   "name": "About",                 "form": "layer", "help": "settings-about" }
+  ]
+}

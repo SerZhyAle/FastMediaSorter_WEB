@@ -1,0 +1,8 @@
+Glyphs in this folder are the generated SVG files of the shared ICON-SET vocabulary
+(contracts catalog, iconography/glyphs), copied unchanged. Ten glyphs were vendored at
+ICON-SET 0.39; action.choose-file.svg was added unchanged at ICON-SET 0.41.
+
+Most drawings derive from Material Icons by Google, licensed under the Apache License,
+Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0). The remaining drawings were
+drawn for the ICON-SET contract. The origin of each glyph is recorded per meaning in the
+vocabulary (glyph.source / ref.source).

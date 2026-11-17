@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FMS_Web in-app help gate (S0031)</title>
+  <style>
+    #page { inline-size: 1024px; block-size: 640px; border: 1px solid; }
+    #results { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>FMS_Web in-app help gate</h1>
+  <p>
+    The CONTEXT-HELP rule 19 gate: the surfaces of the shell's registry against the help map, every
+    help entry's text in EN, RU and UK, the resolver, and the real page in a frame - the help button
+    in every header, F1, the numbered layer on every surface, every control covered by an entry,
+    and dismissal. The verdict is the last line.
+  </p>
+  <iframe id="page" title="Page under test"></iframe>
+  <pre id="results" aria-live="polite">running...</pre>
+  <script type="module" src="./help.js"></script>
+</body>
+</html>

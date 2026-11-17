@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FMS_Web stack smoke test (S0003)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    #results { white-space: pre-wrap; }
+    .pass { color: #067d17; }
+    .fail { color: #b30023; }
+  </style>
+</head>
+<body>
+  <h1>FMS_Web stack smoke test</h1>
+  <p>
+    Proves the chosen stack runs in this browser: static files served over HTTP, an ES module
+    executing, and the WebCrypto primitives the first release needs (DEVICE-EXCHANGE section 27:
+    ECDH P-256, HKDF, HMAC, AES-GCM, one-shot SHA-256). The verdict is written below and to the
+    console; the command that runs this page headless reads the same line.
+  </p>
+  <pre id="results" aria-live="polite">running...</pre>
+  <script type="module" src="./smoke.js"></script>
+</body>
+</html>

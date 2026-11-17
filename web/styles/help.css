@@ -1,0 +1,77 @@
+/* The help layer (CONTEXT-HELP rule 6). Colours are the tokens of palette.css; the marker is a
+   link-like control outside UI-SIZING, so it takes the ICON-RENDER web floor: 28 CSS px under a
+   fine pointer, 44 under touch (CONTEXT-HELP 0.2 items I and J). */
+
+.help-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.help-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+  opacity: 0.35;
+}
+
+.help-highlight {
+  position: fixed;
+  box-sizing: border-box;
+  border: calc(3px * var(--ui-scale)) solid var(--focus);
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
+.help-pin {
+  position: fixed;
+  box-sizing: border-box;
+  min-inline-size: calc(28px * var(--ui-scale));
+  min-block-size: calc(28px * var(--ui-scale));
+  padding-inline: calc(4px * var(--ui-scale));
+  border: 2px solid var(--accent-ink);
+  border-radius: calc(14px * var(--ui-scale));
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+[data-input-profile='touch'] .help-pin {
+  min-inline-size: calc(44px * var(--ui-scale));
+  min-block-size: calc(44px * var(--ui-scale));
+  border-radius: calc(22px * var(--ui-scale));
+}
+
+/* The current marker is told apart by its outline and its underlined number, not by colour alone. */
+.help-pin.is-current {
+  outline: calc(3px * var(--ui-scale)) solid var(--focus);
+  outline-offset: calc(2px * var(--ui-scale));
+  text-decoration: underline;
+}
+
+.help-note {
+  position: fixed;
+  inset-inline-end: var(--group-gap);
+  inset-block-end: var(--group-gap);
+  box-sizing: border-box;
+  inline-size: min(28rem, calc(100vw - 2 * var(--group-gap)));
+  padding: var(--group-gap);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+.help-note-name { margin: 0; font-size: 1rem; font-weight: 600; }
+.help-note-name:empty { display: none; }
+.help-note-text { margin-block: calc(4px * var(--ui-scale)) 0; }
+.help-note-reason { margin-block: calc(4px * var(--ui-scale)) 0; color: var(--warning); }
+.help-note-hint { margin-block: var(--gap) 0; font-size: 0.875rem; color: var(--text-muted); }
+.help-note-actions { margin-block-start: var(--gap); justify-content: flex-end; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .help-highlight { transition: left 0.12s ease, top 0.12s ease, width 0.12s ease, height 0.12s ease; }
+}

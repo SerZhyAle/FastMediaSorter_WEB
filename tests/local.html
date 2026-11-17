@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FMS_Web local browsing test (S0023)</title>
+  <style>
+    #page { inline-size: 1200px; block-size: 800px; border: 1px solid; }
+    #results { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>FMS_Web local browsing test</h1>
+  <p>
+    Checks local browsing and viewing: the MEDIA-CLASSIFICATION table and exclusions, the
+    MEDIA-VIEWER sort, filter and navigation rules, the viewer keys, the folder sources, the view
+    transform, and the real page in a frame with dropped files. The verdict is the last line.
+  </p>
+  <iframe id="page" title="Page under test"></iframe>
+  <pre id="results" aria-live="polite">running...</pre>
+  <script type="module" src="./local.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Поддержка и совместимость - FastMediaSorter for Web</title>
+<meta name="description" content="Контакты, сообщения об ошибках, поддерживаемые браузеры и ограничения платформы.">
+<link rel="canonical" href="https://serzhyale.github.io/FastMediaSorter_WEB/ru/support.html">
+<link rel="alternate" hreflang="en" href="https://serzhyale.github.io/FastMediaSorter_WEB/support.html">
+<link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/FastMediaSorter_WEB/ru/support.html">
+<link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/FastMediaSorter_WEB/uk/support.html">
+<link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/FastMediaSorter_WEB/support.html">
+<meta property="og:title" content="Поддержка и совместимость - FastMediaSorter for Web">
+<meta property="og:description" content="Контакты, сообщения об ошибках, поддерживаемые браузеры и ограничения платформы.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://serzhyale.github.io/FastMediaSorter_WEB/ru/support.html">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<script>
+(function(){
+  var q=new URLSearchParams(location.search),h=document.documentElement;
+  
+  var th=q.get('theme');if(th!=='light'&&th!=='dark'){try{th=localStorage.getItem('sza-theme')}catch(e){}}if(th!=='light'&&th!=='dark')th=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  h.setAttribute('data-theme',th);
+  var pr=q.get('profile');if(pr!=='pointer'&&pr!=='touch')pr=matchMedia('(pointer: coarse)').matches?'touch':'pointer';
+  h.setAttribute('data-ui-profile',pr);
+})();
+</script>
+<link rel="stylesheet" href="../styles/sza-kit.css">
+<style>
+  body{padding-bottom:4rem}
+  .wrap{padding:0 var(--gutter);position:relative;z-index:1}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr));gap:1rem;margin:1rem 0 1.5rem}
+  .card{border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;background:var(--card)}
+  .card h2,.card h3{margin-top:0;font-size:1.05rem}
+  .card p:last-child{margin-bottom:0}
+  .caveat{color:var(--muted);font-size:.9rem;margin-top:.5rem}
+  .table-wrap{overflow-x:auto;margin:1rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--text-2);font-family:var(--font-heading)}
+  .inline-mark{width:20px;height:20px;vertical-align:text-bottom;margin-inline-end:.35rem}
+  .footer-meta{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;color:var(--muted);font-size:.9rem}
+  .footer-meta a{color:inherit}
+</style>
+</head>
+<body>
+<div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<header class="site-header">
+  <a class="brand" href="../ru/">FastMediaSorter for Web</a>
+  <a class="btn btn-ghost" href="guide.html">Руководство</a>
+  <div class="seg" role="group" aria-label="Язык">
+    <a href="../ru/support.html" data-set-lang="ru" aria-pressed="true">RU</a><a href="../support.html" data-set-lang="en" aria-pressed="false">EN</a><a href="../uk/support.html" data-set-lang="ua" aria-pressed="false">UA</a>
+  </div>
+  <button type="button" class="theme-btn" id="themeBtn" aria-label="Переключить тему"><span class="gi gi-theme" aria-hidden="true"></span><span>Тема</span></button>
+  
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Поддержка и совместимость</h1>
+    <p class="lead">Свяжитесь с автором или проверьте требования к браузерам и ограничения платформы.</p>
+  </section>
+  <section>
+    <h2>Контакты и сообщения об ошибках</h2>
+    <ul>
+      <li>Почта: <a href="mailto:sza@ukr.net">sza@ukr.net</a></li>
+      <li>GitHub Issues: <a href="https://github.com/SerZhyAle/FastMediaSorter_WEB/issues">https://github.com/SerZhyAle/FastMediaSorter_WEB/issues</a></li>
+      <li>При сообщении о сбое в браузере или подключении приложите диагностический ZIP-архив с экрана «О программе».</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Ограничения платформы</h2>
+    <ul>
+      <li>Перемещение файлов в папки назначения требует Chrome или Edge на компьютере (File System Access API).</li>
+      <li>Прослушивание порта, работа после закрытия вкладки, прямые сокеты и связь с часами остаются в нативных программах для Android и Windows.</li>
+    </ul>
+  </section>
+</main>
+<footer class="site-footer wrap">
+
+  <div class="footer-meta">
+    <span>Автор: <a href="https://sza.od.ua">SZA</a></span>
+    <a href="https://github.com/SerZhyAle">GitHub: SerZhyAle</a>
+    <span>Контакт: <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
+    <a href="privacy.html">Приватность</a>
+    <a href="guide.html">Руководство</a>
+    <a href="support.html">Поддержка</a>
+    <a href="https://github.com/SerZhyAle/FastMediaSorter_WEB/blob/main/LICENSE">Лицензия MIT</a>
+  </div>
+</footer>
+<button type="button" class="to-top show" id="toTop" aria-label="Наверх" title="Наверх"><span class="gi gi-top" aria-hidden="true"></span></button>
+<script>
+(function(){
+  var h=document.documentElement;
+  document.querySelectorAll('[data-set-lang]').forEach(function(a){
+    a.addEventListener('click',function(){try{localStorage.setItem('sza-lang',a.getAttribute('data-set-lang'))}catch(e){}});
+  });
+  var tb=document.getElementById('themeBtn');
+  if(tb)tb.addEventListener('click',function(){
+    var n=h.getAttribute('data-theme')==='light'?'dark':'light';
+    h.setAttribute('data-theme',n);
+    try{localStorage.setItem('sza-theme',n)}catch(e){}
+  });
+  var tt=document.getElementById('toTop');
+  if(tt)tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+</script>
+</body>
+</html>

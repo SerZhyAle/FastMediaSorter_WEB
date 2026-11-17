@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+
+  "$comment": "New repo adopted 2026-10-16 (FastMediaSorter Android ticket S4246 created it on 2026-10-15). Nothing builds or ships yet: no code, no tags (tagRegex null), no channel with a committed manifest, no site (handoff decision 4 open), no release changelog; the ledger is shape 2 since 2026-11-12 (S0039), the harness dev-log dev/CHANGELOG.md written by tools/post-change.ps1 through devlog/add_to_dev_log.ps1 (dev/ stays developer-local and ignored). Overlay E - a browser application served as static files - was drafted from this repo on 2026-10-16 and adopted by the canon in 2026.10.16.1 (PLATFORM_OVERLAYS \"Overlay E\"); its frozen anchors (the origin and the manifest id) are not reserved yet, because no public address exists. The owner named the public name \"FastMediaSorter for Web\" and the remote SerZhyAle/FastMediaSorter_WEB (public, MIT) on 2026-11-10 (S0021); the remote is created and pushed only when the owner asks, so the origin is still not reserved. editions stays empty on purpose: FMS_Web has the shape of a cross-repo edition (independent code, behaviour held in step through catalog contracts), but the field lists the editions a repository ships itself (FMS_Win declares [\"server\"], FMS_A []), neither sibling names FMS_Web, and FMS_Web is a subset of two products - the reading is in the contrib record. The stack is decided (static files, no build step); the serving shape and therefore the version shape and channels are open owner decisions, each a ticket in PLAN/. privacy.sensitiveAccess stays false while no channel is declared; the page handles a password, a token and a device private key, so the serving ticket revisits it together with a privacy page.",
+
+  "canon": {
+    "version": "2026.11.12.9",
+    "coreDigest": "sha256:af1470e68110487ee4e23fd7a694bfc355a31df2017c98d367d603f015f7ec0c",
+    "adoptedOn": "2026-10-16",
+    "reconciledOn": "2026-11-12",
+    "model": "reference",
+    "contribRecord": "contrib/fastmediasorter_web.md"
+  },
+
+  "role": "product",
+
+  "overlay": ["E"],
+  "shapes": [],
+  "editions": [],
+
+  "versionShape": {
+    "tagRegex": null,
+    "editionTagPrefixes": []
+  },
+
+  "ledgerShape": "2",
+  "ledgerFile": "dev/CHANGELOG.md",
+
+  "docRegistryShape": 1,
+  "docRegistryFile": "docs/DOCUMENT_REGISTRY.jsonl",
+
+  "channels": [],
+
+  "site": {
+    "kind": "static",
+    "root": "docs",
+    "pages": [
+      "index.html",
+      "ru/index.html",
+      "uk/index.html",
+      "privacy.html",
+      "ru/privacy.html",
+      "uk/privacy.html",
+      "guide.html",
+      "ru/guide.html",
+      "uk/guide.html",
+      "support.html",
+      "ru/support.html",
+      "uk/support.html"
+    ]
+  },
+
+  "privacy": {
+    "page": "docs/privacy.html",
+    "carveOut": null,
+    "sensitiveAccess": true
+  },
+
+  "byteIdenticalPairs": [],
+  "vendorAllow": [],
+  "exemptions": [
+    {
+      "id": "SZA-CTR02",
+      "path": "docs/BOOTSTRAP_HANDOFF.md",
+      "reason": "Origin record of 2026-10-15, written by FastMediaSorter Android ticket S4246 before this repository's first commit and not edited from this repository's sessions. It names the catalog path because it predates this repository's rules; every living file cites contracts by id and CLAUDE.md is the one file that names the catalog."
+    },
+    {
+      "id": "SZA-CTR02",
+      "path": "docs/origin/S4246_exchange-web-client-skeleton.md",
+      "reason": "Verbatim copy of FastMediaSorter Android spec S4246, carried here because the spec itself requires a verbatim copy on transfer. Editing it would break the verbatim promise; it is an origin record, not a living file."
+    }
+  ]
+}

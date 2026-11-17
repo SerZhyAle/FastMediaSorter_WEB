@@ -1,0 +1,41 @@
+FastMediaSorter for Web - product icon set (vendored by S0063, 2026-11-16)
+
+What this folder holds: the product's own identity artwork, the face of
+"FastMediaSorter for Web" in a browser tab, a bookmark and an iOS/iPadOS
+home-screen tile. Derived, not redrawn, from the family's reference icon:
+
+  Source (read-only, never modified):
+  FastMediaSorter Android (FMS_A)
+  P:\ANDROID\FastMediaSorter_mob_v2\app_v2\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+  the standard 192 px legacy launcher: the leaning double-headed arrows of the
+  FMS mark, blue gradient (#0B82EB..#98CFF1) on a dark plate, corner rounding
+  as shipped.
+
+  favicon.ico          frames 16, 32, 48 px - LANCZOS downscales of the source
+  apple-touch-icon.png 180 x 180          - LANCZOS downscale of the source
+
+  Both artifacts are byte-equal to a recompute from that source: proven at
+  vendoring (2026-11-16) and re-proven at the wiring pass (2026-11-17,
+  ICON-SET-LOCAL: PASS, exit 0). The recompute script is development scratch
+  under temp/S0063/ - local, git-ignored, not part of the served tree.
+  Rebuild with: py -3 temp/S0063/build_app_icon.py
+
+Corroborated against the second native sibling (sampled 2026-11-16, read-only):
+FastMediaSorter_Win P:\WINDOWS\FastMediaSorter_Lite\assets\icons\Fast_Media_Sorter.ico
+- the same leaning blue mark, no plate, alpha outside.
+
+Owner request (2026-11-16, S0063): FMS_Web must inherit the icons and symbols
+used by FMS_A and FMS_Win, and its main icon must remind of FMS_A. The choice
+of the plate form follows that sentence. Interface glyphs are NOT in this
+folder: they are the ICON-SET vocabulary vendored under web/vendor/icon-set/;
+the exchange server mark is under web/vendor/exchange-mark/.
+
+Wired (2026-11-17, the S0063 acceptance pass): web/index.html points the page
+favicon at vendor/app-icon/favicon.ico and the iOS/iPadOS home-screen tile at
+vendor/app-icon/apple-touch-icon.png, under EXCHANGE-MARK 0.5 rule 13 - the
+owner accepted PROPOSAL-2026-11-16-fms-web-product-favicon.md on 2026-11-16:
+the web client page the server serves is the product's own page and keeps the
+product's own favicon, and the exchange mark stays beside the server name and
+on every surface that names the server.
+Nothing in this folder may be recoloured, retinted, further rotated, flipped or
+drawn over; a change comes as a new derivation from the source above.

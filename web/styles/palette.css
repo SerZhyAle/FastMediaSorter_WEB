@@ -1,0 +1,111 @@
+:root {
+  color-scheme: light;
+  --surface-window: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-sunken: #f2f4f7;
+  --surface-selected: #dbeafe;
+  --surface-alternate: #f5f7fa;
+  --control: #ffffff;
+  --control-hover: #e9edf3;
+  --control-pressed: #d7dee8;
+  --border: #5a6675;
+  --text-primary: #17202c;
+  --text-muted: #465362;
+  --text-disabled: #67717d;
+  --accent: #174a8b;
+  --accent-hover: #10396f;
+  --accent-ink: #ffffff;
+  --link: #174a8b;
+  --info: #174a8b;
+  --danger: #a11d24;
+  --danger-ink: #ffffff;
+  --warning: #744600;
+  --success: #176235;
+  --group-header: #e5eaf1;
+  --focus: #003e9c;
+  --scrim: #17202c66;
+  --ui-scale: 1;
+  --target-base: 48px;
+  --glyph-base: 20px;
+  --padding-inline-base: 16px;
+  --check-base: 24px;
+  --target: calc(var(--target-base) * var(--ui-scale));
+  --glyph: calc(var(--glyph-base) * var(--ui-scale));
+  --padding-inline: calc(var(--padding-inline-base) * var(--ui-scale));
+  --gap: calc(8px * var(--ui-scale));
+  --group-gap: calc(16px * var(--ui-scale));
+  --radius: calc(4px * var(--ui-scale));
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --surface-window: #141a22;
+  --surface-raised: #1c2530;
+  --surface-sunken: #10161d;
+  --surface-selected: #294769;
+  --surface-alternate: #202a36;
+  --control: #263341;
+  --control-hover: #35475a;
+  --control-pressed: #425972;
+  --border: #a3b2c2;
+  --text-primary: #f3f6fa;
+  --text-muted: #ced7e1;
+  --text-disabled: #9ba9b7;
+  --accent: #a9cbff;
+  --accent-hover: #c6ddff;
+  --accent-ink: #102844;
+  --link: #a9cbff;
+  --info: #a9cbff;
+  --danger: #ffb3b5;
+  --danger-ink: #510008;
+  --warning: #ffd28c;
+  --success: #a3e6b8;
+  --group-header: #303e4e;
+  --focus: #b7d3ff;
+  --scrim: #000000a0;
+}
+
+:root[data-input-profile='pointer'] {
+  --target-base: 32px;
+  --glyph-base: 16px;
+  --padding-inline-base: 12px;
+  --check-base: 20px;
+}
+
+@media (forced-colors: active) {
+  :root, :root[data-theme='dark'] {
+    --surface-window: Canvas;
+    --surface-raised: Canvas;
+    --surface-sunken: Canvas;
+    --surface-selected: Highlight;
+    --surface-alternate: Canvas;
+    --control: ButtonFace;
+    --control-hover: ButtonFace;
+    --control-pressed: ButtonFace;
+    --border: ButtonText;
+    --text-primary: CanvasText;
+    --text-muted: CanvasText;
+    --text-disabled: GrayText;
+    --accent: Highlight;
+    --accent-hover: Highlight;
+    --accent-ink: HighlightText;
+    --link: LinkText;
+    --info: CanvasText;
+    --danger: ButtonText;
+    --danger-ink: ButtonFace;
+    --warning: CanvasText;
+    --success: CanvasText;
+    --group-header: ButtonFace;
+    --focus: Highlight;
+    --scrim: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$comment": "Project profile for the canon-shipped harness (tools/harness in the sza plugin). Every omitted key keeps the canon default in tools/harness/_profile.ps1: PLAN/ and temp/ roots, the Sxxxx ticket grammar, the thirteen statuses, the release-plan file names. Only what differs from the defaults is written here. Run harness scripts through tools/harness.ps1, never by copying them.",
+
+  "version": "1",
+  "projectName": "FastMediaSorter_WEB",
+  "envPrefix": "SZA",
+
+  "$comment_modules": "The stack is decided (owner, 2026-10-16, S0003): static HTML, CSS and ES modules, no build step, the served files are the source. The one build unit is the source root `web/` itself, so the module is named after it.",
+  "modules": {
+    "default": "web",
+    "names": ["web"]
+  },
+
+  "locks": {
+    "domains": [
+      { "name": "Build.Main", "type": "Build", "rank": 1 },
+      { "name": "Code.Main", "type": "Code", "rank": 2 },
+      { "name": "Code.Scripts", "type": "Code", "rank": 3 }
+    ],
+    "pathRules": [
+      { "pattern": "^PLAN/", "domain": null },
+      { "pattern": "^(temp|dev)/", "domain": null },
+      { "pattern": "^(package\\.json|tsconfig\\.json)$", "domain": "Code" },
+      { "pattern": "^(web|tests)/", "domain": "Code.Main" },
+      { "pattern": "^(tools|scripts|docs|\\.claude|\\.github)/", "domain": "Code.Scripts" },
+      { "pattern": "^(CLAUDE|AGENTS|README)\\.md$", "domain": "Code.Scripts" },
+      { "pattern": "^(LICENSE|\\.gitignore|\\.gitattributes|r[0-3]\\.ps1|r[smw]\\.ps1)$", "domain": "Code.Scripts" },
+      { "pattern": "^(\\.sza-profile\\.json|\\.sza-canon\\.json)$", "domain": "Code.Scripts" }
+    ]
+  },
+
+  "$comment_probes": "Probe form of the static stack (S0003): a console.debug line carrying the ticket id, the browser counterpart of Timber.d. scanRoots/sourceRoots are the source tree `web/`; `tests/` pages carry no probes. The canon's probe gates read the file types from `sourceExtensions` below (blockneedusertest-probes.ps1, Get-ProbeSourceFile), so a JS probe is visible to them.",
+  "probes": {
+    "enabled": true,
+    "scanRoots": ["web"],
+    "sourceRoots": ["web"],
+    "sourceExtensions": [".js", ".html", ".css", ".json"],
+    "openerRegex": "console\\.(?<level>debug|error|info|log|warn)\\(",
+    "formRegex": "^console\\.debug\\(\\s*\"(?<num>S\\d{4}):",
+    "formRegexForId": "^console\\.debug\\(\\s*\"{Id}:",
+    "tagRegex": "console\\.debug\\(\"S\\d{4}:",
+    "templateRegex": "^console\\.debug\\(\\s*\"(?<ticket>S\\d{4}):\\s*(?<message>(?:\\\\.|[^\"\\\\])*)\"",
+    "ownLineRegex": "^console\\.debug\\(.*\\)$",
+    "callTemplate": "console.debug(\"{Id}: {Message}\")",
+    "callName": "console.debug",
+    "removeCommand": "",
+    "removeOnExit": false
+  },
+
+  "commands": {
+    "$comment_statusCommands": "S0041: the release plan's next command per status. Every working status runs the canon pipeline through the plugin forwarder /spec-all (the per-stage /spec-tech, /spec-dev, /spec-fix, /spec-check of the canon default do not exist here); BlockQuestions is drained by /spec-quiz. BlockNeedUserTest, BlockExternal and the ready statuses wait on a person and name no command. The small tiers /quick and /skill-fix are never a queue ticket's command.",
+    "statusCommands": {
+      "Draft": ["/spec-all {Id}"],
+      "Approved": ["/spec-all {Id}"],
+      "Tactical": ["/spec-all {Id}"],
+      "In Progress": ["/spec-all {Id}"],
+      "Partial": ["/spec-all {Id}"],
+      "Broken": ["/spec-all {Id}"],
+      "BlockByOtherTask": ["/spec-all {Id}"],
+      "BlockQuestions": ["/spec-quiz {Id}"],
+      "Implemented": ["/spec-all {Id}"]
+    },
+    "$comment_aliases": "S0041: short names for this repository's own commands, rendered by the harness aliases/generate-command-aliases.ps1 into .claude/commands/<alias>.md. The spec commands' short forms (/sa, /sd, /sn, /sq) belong to the plugin's register-spec-commands.ps1 and are deliberately absent here, so the two generators never write one file. Latin set only; /quick is already short.",
+    "aliases": [
+      { "canonical": "skill-fix", "latin": "sf" },
+      { "canonical": "ui-clarify", "latin": "uc" }
+    ]
+  }
+}

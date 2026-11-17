@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "ClaudeInChromeDomain(example.com)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell|Monitor",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh -NoProfile -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard-manual-task-wait.ps1\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 30,
+            "command": "input=$(cat); case \"$input\" in *\"o matches found\"*|*\"o files found\"*|*'\"numFiles\":0'*) printf '%s' \"$input\" | pwsh -NoProfile -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/observe-empty-grep.ps1\" ;; *) exit 0 ;; esac"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh -NoProfile -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/refuse-unexplained-red-verdict.ps1\""
+          }
+        ]
+      }
+    ]
+  }
+}
