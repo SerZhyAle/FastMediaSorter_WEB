@@ -1,0 +1,7 @@
+# FastMediaSorter for Web product site. Crawlers read robots.txt only at the host
+# root (RFC 9309); the host-root file is owned by the hub portfolio site. This
+# project-path copy is harmless and kept so checkers and generators agree.
+User-agent: *
+Allow: /
+
+Sitemap: https://serzhyale.github.io/FastMediaSorter_WEB/sitemap.xml

@@ -4,6 +4,9 @@
 from __future__ import annotations
 
 import html
+import json
+import subprocess
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -16,6 +19,8 @@ PORTAL_URL = "https://serzhyale.github.io/FastMediaSorter_mob_v2/docs/media-exch
 SERVER_PAGE_URL = "https://serzhyale.github.io/FastMediaSorter_mob_v2/docs/media-exchange-portal/exchange-server.html"
 FMS_A_URL = "https://serzhyale.github.io/FastMediaSorter_mob_v2/"
 FMS_WIN_URL = "https://serzhyale.github.io/FastMediaSorter_Lite/"
+OG_IMAGE_URL = f"{BASE_URL}assets/og-image.png"
+INDEXNOW_KEY = "16d3f1802255040a0a2c2f62464b4666bd4a796f"
 
 FAMILY_ROWS = [
     (
@@ -30,9 +35,9 @@ FAMILY_ROWS = [
     (
         "Fast Media Sorter & Sharing for Windows",
         {
-            "en": "Windows media and file manager",
-            "ru": "Файловый и медиаменеджер для Windows",
-            "uk": "Файловий і медіаменеджер для Windows",
+            "en": "Media and file manager for Windows: sort photos and videos with one key",
+            "ru": "Медиа- и файловый менеджер для Windows: сортировка фото и видео одной клавишей",
+            "uk": "Медіа- та файловий менеджер для Windows: сортування фото й відео однією клавішею",
         },
         FMS_WIN_URL,
     ),
@@ -206,6 +211,39 @@ def pre_paint_script(locale: str, page: str) -> str:
     )
 
 
+def json_ld_block(locale: str, page: str, title: str, description: str) -> str:
+    lang = COMMON[locale]["lang_attr"]
+    url = page_url(locale, page)
+    if page == "index.html":
+        data = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "FastMediaSorter for Web",
+            "url": url,
+            "description": description,
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Web",
+            "isAccessibleForFree": True,
+            "inLanguage": lang,
+            "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        }
+    else:
+        data = {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": title,
+            "description": description,
+            "url": url,
+            "inLanguage": lang,
+            "isPartOf": page_url(locale, "index.html"),
+        }
+    return (
+        '<script type="application/ld+json">\n'
+        + json.dumps(data, ensure_ascii=False, indent=2)
+        + "\n</script>"
+    )
+
+
 def render_head(locale: str, page: str, title: str, description: str) -> str:
     c = COMMON[locale]
     rel = c["rel_root"]
@@ -230,6 +268,12 @@ def render_head(locale: str, page: str, title: str, description: str) -> str:
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{canon}">
+<meta property="og:image" content="{OG_IMAGE_URL}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{html.escape(title)}">
+<meta name="twitter:card" content="summary_large_image">
+{json_ld_block(locale, page, title, description)}
 <link rel="icon" href="{rel}assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="{rel}assets/icon.svg">
 {pre_paint_script(locale, page)}
@@ -343,7 +387,7 @@ LANDING_COPY = {
         "g1_title": "Local media, sorting and slideshow",
         "g1_body": "<p>Open any folder of images, animated images, video or audio directly in the browser. Run a timed slideshow while keeping the screen awake where Wake Lock is supported.</p><p>In Chrome and Edge on desktop, select up to ten destination folders and sort files with keys <code>1</code> to <code>9</code> and <code>0</code>.</p>",
         "g2_title": "Exchange account and Media Exchange Server",
-        "g2_body": f'<p>The browser speaks the shared <code>DEVICE-EXCHANGE</code> protocol. Your device private key never leaves the browser, and sealed content cannot be read by the server.</p><p>Read more on the shared <a href="{PORTAL_URL}">Media exchange between your devices</a> portal and the <a href="{SERVER_PAGE_URL}"><img class="inline-mark" src="assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a> page.</p>',
+        "g2_body": f'<p>The browser speaks the shared <code>DEVICE-EXCHANGE</code> protocol. Your device private key never leaves the browser, and sealed content cannot be read by the server. Connecting an exchange account is distinct from installing the Windows program\'s local SFTP folder sharing: the account lives on a Media Exchange Server that its owner runs, the browser has no SFTP of its own, and no Windows installation is required to use this web app.</p><p>Read more on the shared <a href="{PORTAL_URL}">Media exchange between your devices</a> portal and the <a href="{SERVER_PAGE_URL}"><img class="inline-mark" src="assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a> page.</p>',
         "g3_title": "Browser support floor",
         "g3_headers": ("Engine / Browser", "Browse & view", "Play audio & video", "Sort to folders (1-9, 0)", "Exchange & admin"),
         "g3_rows": [
@@ -353,7 +397,7 @@ LANDING_COPY = {
             ("Safari (macOS, iOS, iPadOS)", "Supported", "Supported", "Visible, disabled (no directory write access)", "Supported"),
         ],
         "g4_title": "Native family programs",
-        "g4_body": f'<p>Functions that require the operating system itself - listening on a port, running after the tab closes, raw sockets or watch pairing - stay with the native programs: <a href="{FMS_A_URL}">Fast Media Sorter &amp; Organizer</a> (Android) and <a href="{FMS_WIN_URL}">Fast Media Sorter &amp; Sharing for Windows</a> (Windows, which also hosts the Media Exchange Server).</p>',
+        "g4_body": f'<p>Functions that require the operating system itself - listening on a port, running after the tab closes, raw sockets or watch pairing - stay with the native programs: <a href="{FMS_A_URL}">Fast Media Sorter &amp; Organizer</a> (Android) and <a href="{FMS_WIN_URL}">Fast Media Sorter &amp; Sharing for Windows</a> (Windows) - Media and file manager for Windows: sort photos and videos with one key. It installs as four optional parts - a media and file manager, local SFTP folder sharing, scheduled file operations and a Media Exchange Server you run yourself - starting with the manager or with the folder-sharing server, neither needing the other; the exchange server is not in any published package, and no Windows installation is required to use this web app. The Windows program\'s own page names its install choices.</p>',
         "docs_h2": "Documentation and support",
         "docs_links": [("guide.html", "Quick-start guide"), ("privacy.html", "Privacy & permissions"), ("support.html", "Support & compatibility")],
     },
@@ -381,7 +425,7 @@ LANDING_COPY = {
         "g1_title": "Локальные медиа, сортировка и слайд-шоу",
         "g1_body": "<p>Открывайте папки с изображениями, анимацией, видео и аудио прямо в браузере. Запускайте слайд-шоу с удержанием экрана там, где поддерживается Wake Lock.</p><p>В Chrome и Edge на компьютере выберите до десяти папок назначения и сортируйте файлы клавишами <code>1</code>-<code>9</code> и <code>0</code>.</p>",
         "g2_title": "Учётная запись обмена и Media Exchange Server",
-        "g2_body": f'<p>Браузер работает по общему протоколу <code>DEVICE-EXCHANGE</code>. Закрытый ключ устройства никогда не покидает браузер, а сервер не может прочитать зашифрованное содержимое.</p><p>Подробнее на общем портале <a href="{PORTAL_URL}">Обмен медиа между устройствами</a> и странице <a href="{SERVER_PAGE_URL}"><img class="inline-mark" src="../assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a>.</p>',
+        "g2_body": f'<p>Браузер работает по общему протоколу <code>DEVICE-EXCHANGE</code>. Закрытый ключ устройства никогда не покидает браузер, а сервер не может прочитать зашифрованное содержимое. Подключение учётной записи обмена - не то же самое, что локальная раздача папок по SFTP в программе для Windows: учётная запись живет на Media Exchange Server, который держит его владелец, у браузера нет своего SFTP, и для работы этого веб-приложения не нужна никакая установка на Windows.</p><p>Подробнее на общем портале <a href="{PORTAL_URL}">Обмен медиа между устройствами</a> и странице <a href="{SERVER_PAGE_URL}"><img class="inline-mark" src="../assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a>.</p>',
         "g3_title": "Поддерживаемые браузеры",
         "g3_headers": ("Движок / Браузер", "Просмотр", "Аудио и видео", "Сортировка в папки (1-9, 0)", "Обмен и админ"),
         "g3_rows": [
@@ -391,7 +435,7 @@ LANDING_COPY = {
             ("Safari (macOS, iOS, iPadOS)", "Поддерживается", "Поддерживается", "Видимо, отключено (нет записи в папку)", "Поддерживается"),
         ],
         "g4_title": "Нативные программы семейства",
-        "g4_body": f'<p>Функции, требующие самой операционной системы - прослушивание порта, работа после закрытия вкладки, прямые сокеты или связь с часами - остаются в нативных программах: <a href="{FMS_A_URL}">Fast Media Sorter &amp; Organizer</a> (Android) и <a href="{FMS_WIN_URL}">Fast Media Sorter &amp; Sharing for Windows</a> (Windows, где также находится Media Exchange Server).</p>',
+        "g4_body": f'<p>Функции, требующие самой операционной системы - прослушивание порта, работа после закрытия вкладки, прямые сокеты или связь с часами - остаются в нативных программах: <a href="{FMS_A_URL}">Fast Media Sorter &amp; Organizer</a> (Android) и <a href="{FMS_WIN_URL}">Fast Media Sorter &amp; Sharing for Windows</a> (Windows) - Медиа- и файловый менеджер для Windows: сортировка фото и видео одной клавишей. Она ставится как четыре необязательные части - медиа- и файловый менеджер, локальная раздача папок по SFTP, операции с файлами по расписанию и Media Exchange Server, который вы держите сами - начиная с менеджера или с сервера раздачи папок, и ни одной из них не нужна другая; сервер обмена не входит ни в один опубликованный пакет, и для работы этого веб-приложения не нужна никакая установка на Windows. Свою страницу с вариантами установки называет сама программа для Windows.</p>',
         "docs_h2": "Документация и поддержка",
         "docs_links": [("guide.html", "Руководство"), ("privacy.html", "Приватность и разрешения"), ("support.html", "Поддержка и совместимость")],
     },
@@ -419,7 +463,7 @@ LANDING_COPY = {
         "g1_title": "Локальні медіа, сортування та слайд-шоу",
         "g1_body": "<p>Відкривайте теки із зображеннями, анімацією, відео та аудіо безпосередньо в браузері. Запускайте слайд-шоу з утриманням екрана там, де підтримується Wake Lock.</p><p>У Chrome та Edge на комп'ютері виберіть до десяти тек призначення та сортуйте файли клавішами <code>1</code>-<code>9</code> і <code>0</code>.</p>",
         "g2_title": "Обліковий запис обміну та Media Exchange Server",
-        "g2_body": f'<p>Браузер працює за спільним протоколом <code>DEVICE-EXCHANGE</code>. Закритий ключ пристрою ніколи не залишає браузер, а сервер не може прочитати зашифрований вміст.</p><p>Докладніше на спільному порталі <a href="{PORTAL_URL}">Обмін медіа між пристроями</a> та сторінці <a href="{SERVER_PAGE_URL}"><img class="inline-mark" src="../assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a>.</p>',
+        "g2_body": f'<p>Браузер працює за спільним протоколом <code>DEVICE-EXCHANGE</code>. Закритий ключ пристрою ніколи не залишає браузер, а сервер не може прочитати зашифрований вміст. Під&#x27;єднання облікового запису обміну - не те саме, що локальна роздача тек через SFTP у програмі для Windows: обліковий запис живе на Media Exchange Server, який тримає його власник, у браузера немає власного SFTP, і для роботи цього вебзастосунку не потрібна жодна установка на Windows.</p><p>Докладніше на спільному порталі <a href="{PORTAL_URL}">Обмін медіа між пристроями</a> та сторінці <a href="{SERVER_PAGE_URL}"><img class="inline-mark" src="../assets/exchange-mark-small.svg" width="20" height="20" alt="Media Exchange Server">Media Exchange Server</a>.</p>',
         "g3_title": "Підтримувані браузери",
         "g3_headers": ("Рушій / Браузер", "Перегляд", "Аудіо та відео", "Сортування в теки (1-9, 0)", "Обмін і адмін"),
         "g3_rows": [
@@ -429,7 +473,7 @@ LANDING_COPY = {
             ("Safari (macOS, iOS, iPadOS)", "Підтримується", "Підтримується", "Видимо, вимкнено (немає запису в теку)", "Підтримується"),
         ],
         "g4_title": "Нативні програми сімейства",
-        "g4_body": f'<p>Функції, що потребують самої операційної системи - прослуховування порту, робота після закриття вкладки, прямі сокети чи зв\'язок із годинником - залишаються в нативних програмах: <a href="{FMS_A_URL}">Fast Media Sorter &amp; Organizer</a> (Android) і <a href="{FMS_WIN_URL}">Fast Media Sorter &amp; Sharing for Windows</a> (Windows, де також розміщено Media Exchange Server).</p>',
+        "g4_body": f'<p>Функції, що потребують самої операційної системи - прослуховування порту, робота після закриття вкладки, прямі сокети чи зв\'язок із годинником - залишаються в нативних програмах: <a href="{FMS_A_URL}">Fast Media Sorter &amp; Organizer</a> (Android) і <a href="{FMS_WIN_URL}">Fast Media Sorter &amp; Sharing for Windows</a> (Windows) - Медіа- та файловий менеджер для Windows: сортування фото й відео однією клавішею. Вона встановлюється як чотири необов\'язкові частини - медіа- та файловий менеджер, локальна роздача тек через SFTP, операції з файлами за розкладом і Media Exchange Server, який ви тримаєте самі - починаючи з менеджера або з сервера роздачі тек, і жодна з них не потребує іншої; сервер обміну не входить до жодного опублікованого пакета, і для роботи цього вебзастосунку не потрібна жодна установка на Windows. Свою сторінку з варіантами установки називає сама програма для Windows.</p>',
         "docs_h2": "Документація та підтримка",
         "docs_links": [("guide.html", "Посібник"), ("privacy.html", "Приватність і дозволи"), ("support.html", "Підтримка та сумісність")],
     },
@@ -612,6 +656,7 @@ CHILD_COPY = {
                 ("3. Connect to an exchange account", [
                     "Open an invitation link or paste a connection string: the invitation fills in automatically so you only choose a login and password.",
                     "Manage devices, browse shared folders, receive account broadcasts and share clipboard text.",
+                    "An exchange account lives on a Media Exchange Server that its owner runs. This is distinct from the Windows program's local SFTP folder sharing, and the browser has no SFTP of its own - no Windows installation is needed.",
                 ]),
             ],
         },
@@ -634,6 +679,7 @@ CHILD_COPY = {
                 ("3. Подключение к учётной записи обмена", [
                     "Откройте ссылку-приглашение или вставьте строку подключения: приглашение подставится автоматически, останется задать логин и пароль.",
                     "Просматривайте устройства и папки, принимайте трансляции и используйте общий буфер обмена.",
+                    "Учётная запись обмена живет на Media Exchange Server, который держит его владелец. Это не то же самое, что локальная раздача папок по SFTP в программе для Windows, и у браузера нет своего SFTP - никакая установка на Windows не нужна.",
                 ]),
             ],
         },
@@ -656,6 +702,7 @@ CHILD_COPY = {
                 ("3. Під'єднання до облікового запису обміну", [
                     "Відкрийте посилання-запрошення або вставте рядок під'єднання: запрошення заповниться автоматично, залишиться обрати логін і пароль.",
                     "Переглядайте пристрої й теки, приймайте трансляції та користуйтеся спільним буфером обміну.",
+                    "Обліковий запис обміну живе на Media Exchange Server, який тримає його власник. Це не те саме, що локальна роздача тек через SFTP у програмі для Windows, і в браузера немає власного SFTP - жодна установка на Windows не потрібна.",
                 ]),
             ],
         },
@@ -736,6 +783,66 @@ def render_child(locale: str, page: str) -> str:
     return render_head(locale, page, d["title"], d["desc"]) + "\n" + body
 
 
+def git_lastmod(repo_path: Path) -> str:
+    """Sitemap lastmod: the file's last significant commit date; today while it differs
+    from HEAD (PROMOTION rules section 3 - never the build time)."""
+    today = date.today().isoformat()
+    rel = repo_path.relative_to(ROOT).as_posix()
+    try:
+        tracked = subprocess.run(
+            ["git", "ls-files", "--error-unmatch", rel],
+            cwd=ROOT, capture_output=True,
+        )
+        if tracked.returncode != 0:
+            return today
+        dirty = subprocess.run(
+            ["git", "diff", "--quiet", "--", rel],
+            cwd=ROOT, capture_output=True,
+        )
+        if dirty.returncode != 0:
+            return today
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%as", "--", rel],
+            cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+        )
+        return out.stdout.strip() or today
+    except Exception:
+        return today
+
+
+def write_extras() -> None:
+    pages = []
+    for locale in ("en", "ru", "uk"):
+        prefix = COMMON[locale]["prefix"]
+        for page in ("index.html", "privacy.html", "guide.html", "support.html"):
+            pages.append((f"docs/{prefix}{page}", page_url(locale, page)))
+    rows = "\n".join(
+        f"  <url><loc>{loc}</loc><lastmod>{git_lastmod(ROOT / rel)}</lastmod></url>"
+        for rel, loc in pages
+    )
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{rows}\n"
+        "</urlset>\n"
+    )
+    (DOCS / "sitemap.xml").write_text(sitemap, encoding="utf-8", newline="\n")
+    robots = (
+        "# FastMediaSorter for Web product site. Crawlers read robots.txt only at the host\n"
+        "# root (RFC 9309); the host-root file is owned by the hub portfolio site. This\n"
+        "# project-path copy is harmless and kept so checkers and generators agree.\n"
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        f"Sitemap: {BASE_URL}sitemap.xml\n"
+    )
+    (DOCS / "robots.txt").write_text(robots, encoding="utf-8", newline="\n")
+    # IndexNow key file: a submission names keyLocation inside the project path, and the
+    # key file must then be served live at that location (PROMOTION rules section 3).
+    # The .txt form is the protocol's own convention for the key location.
+    (DOCS / f"{INDEXNOW_KEY}.txt").write_text(INDEXNOW_KEY + "\n", encoding="utf-8", newline="\n")
+
+
 def main() -> int:
     for locale in ("en", "ru", "uk"):
         out_dir = DOCS if locale == "en" else DOCS / locale
@@ -743,7 +850,8 @@ def main() -> int:
         (out_dir / "index.html").write_text(render_landing(locale) + "\n", encoding="utf-8", newline="\n")
         for page in ("privacy.html", "guide.html", "support.html"):
             (out_dir / page).write_text(render_child(locale, page) + "\n", encoding="utf-8", newline="\n")
-    print("SITE: generated 12 HTML pages under docs/")
+    write_extras()
+    print("SITE: generated 12 HTML pages, sitemap.xml, robots.txt and the IndexNow key under docs/")
     return 0
 
 
